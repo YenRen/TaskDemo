@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -32,6 +33,7 @@ public class TaskHourFragment extends BaseFragment {
     RecyclerView mRcv;
     TaskHourAdapter mTaskDayAdapter;
     List<HourTaskMd> dayTaskMds = new ArrayList<>();
+    boolean isBottomAdd;
     int day;
     Handler handler =  new Handler(){
         @Override
@@ -159,7 +161,7 @@ public class TaskHourFragment extends BaseFragment {
         StringBuffer mySql = new StringBuffer("select * from HOUR_TASK_MD where day = ?");
         dayTaskMds = DyhxRing.tableManager(HourTaskMd.class).queryBySQL(mySql.toString(),whereValue);
         List<TaskModel> mds = new ArrayList<>();
-        for (int i = 0; i < 25; i++) {
+        for (int i = 0; i < 24; i++) {
             TaskModel md = new TaskModel();
             md.setTimeMark(i == 0? "00:00":i+":00");
             for (int j = 0; j < dayTaskMds.size(); j++) {
@@ -174,6 +176,14 @@ public class TaskHourFragment extends BaseFragment {
 
         mRcv.setAdapter(mTaskDayAdapter);
         mTaskDayAdapter.setNewData(mds);
+
+        if(!isBottomAdd){
+            View headView = getLayoutInflater().inflate(R.layout.task_day_item_view,null);
+            TextView tvTime = headView.findViewById(R.id.tv_time);
+            tvTime.setText("24:00");
+            mTaskDayAdapter.addFooterView(headView);
+            isBottomAdd= true;
+        }
 
 
     }

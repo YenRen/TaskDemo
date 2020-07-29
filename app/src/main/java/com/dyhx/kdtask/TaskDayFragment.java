@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -31,6 +32,7 @@ public class TaskDayFragment extends BaseFragment {
     RecyclerView mRcv;
     TaskDayAdapter mTaskDayAdapter;
     List<DayTaskMd> dayTaskMds = new ArrayList<>();
+    boolean isBottomAdd;
 
     Handler handler =  new Handler(){
         @Override
@@ -150,7 +152,7 @@ public class TaskDayFragment extends BaseFragment {
 
         dayTaskMds = DyhxRing.tableManager(DayTaskMd.class).loadAll();
         List<TaskModel> mds = new ArrayList<>();
-        for (int i = 0; i < 32; i++) {
+        for (int i = 0; i < 31; i++) {
             TaskModel md = new TaskModel();
             for (int j = 0; j < dayTaskMds.size(); j++) {
                 DayTaskMd dTmd = dayTaskMds.get(j);
@@ -164,6 +166,14 @@ public class TaskDayFragment extends BaseFragment {
 
         mRcv.setAdapter(mTaskDayAdapter);
         mTaskDayAdapter.setNewData(mds);
+
+        if(!isBottomAdd){
+            View headView = getLayoutInflater().inflate(R.layout.task_day_item_view,null);
+            TextView tvTime = headView.findViewById(R.id.tv_time);
+            tvTime.setText("8月1日");
+            mTaskDayAdapter.addFooterView(headView);
+            isBottomAdd = true;
+        }
 
     }
 
@@ -241,7 +251,6 @@ public class TaskDayFragment extends BaseFragment {
             String[] whereValue1 = {shour+""};
             StringBuffer mySql1 = new StringBuffer("select * from MINUTE_TASK_MD where day = ? ORDER BY  minute asc");
             List<MinuteTaskMd> minuteTaskMds = DyhxRing.tableManager(MinuteTaskMd.class).queryBySQL(mySql1.toString(),whereValue1);
-
 
             if(minuteTaskMds!=null && !minuteTaskMds.isEmpty()){
                 int st =  minuteTaskMds.get(0).getMinute()*5;

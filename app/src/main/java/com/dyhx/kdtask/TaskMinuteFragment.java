@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,6 +31,7 @@ public class TaskMinuteFragment extends BaseFragment {
     TaskMinuteAdapter mTaskMinuteAdapter;
     List<MinuteTaskMd> dayTaskMds = new ArrayList<>();
     int day,hour;
+    boolean isBottomAdd;
     Handler handler =  new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -150,7 +152,7 @@ public class TaskMinuteFragment extends BaseFragment {
         StringBuffer mySql = new StringBuffer("select * from MINUTE_TASK_MD where day = ? and hour = ?");
         dayTaskMds = DyhxRing.tableManager(MinuteTaskMd.class).queryBySQL(mySql.toString(),whereValue);
         List<TaskModel> mds = new ArrayList<>();
-        for (int i = 0; i < 13; i++) {
+        for (int i = 0; i < 12; i++) {
             TaskModel md = new TaskModel();
             md.setTimeMark(i == 0? hour+":00":hour+":"+((i*5)<10?("0"+(i*5)):(i*5)));
             for (int j = 0; j < dayTaskMds.size(); j++) {
@@ -165,6 +167,14 @@ public class TaskMinuteFragment extends BaseFragment {
 
         mRcv.setAdapter(mTaskMinuteAdapter);
         mTaskMinuteAdapter.setNewData(mds);
+
+        if(!isBottomAdd) {
+            View headView = getLayoutInflater().inflate(R.layout.task_day_item_view, null);
+            TextView tvTime = headView.findViewById(R.id.tv_time);
+            tvTime.setText("0:60");
+            mTaskMinuteAdapter.addFooterView(headView);
+            isBottomAdd = true;
+        }
 
 
     }
