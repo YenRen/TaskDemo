@@ -230,7 +230,7 @@ public class TaskHourFragment extends BaseFragment {
             MinuteTaskMd eminuteTaskMd = minuteTaskMds.get(minuteTaskMds.size()-1);
 
             int st = sminuteTaskMd.getMinute()*5;
-            int et = eminuteTaskMd.getMinute()*5;
+            int et = eminuteTaskMd.getMinute()*5+5;
 
             startTime = "2020年7月"+DAY+"日"+posrtion+":"+(st<10?"0"+st:st);
             endTime = "2020年7月"+DAY+"日"+posrtion+":"+(et<10?"0"+et:et);
