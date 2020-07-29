@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TaskFragment">
+
+    <RelativeLayout
+        android:id="@+id/head_contro"
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <RadioGroup
+            android:id="@+id/time_control"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp">
+
+            <RadioButton
+                android:id="@+id/rb_minute"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="分"
+                android:textSize="15sp"
+                android:textColor="#FFFFFF"
+                android:padding="10dp"
+                android:gravity="center"
+                android:button="@null"
+                android:background="@drawable/bg_raido_check"
+                />
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="50dp"
+                android:background="#FFFFFF"/>
+
+            <RadioButton
+                android:id="@+id/rb_hour"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="时"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:padding="10dp"
+                android:gravity="center"
+                android:button="@null"
+                android:background="@drawable/bg_raido_check"/>
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="50dp"
+                android:background="#FFFFFF"/>
+
+            <RadioButton
+                android:id="@+id/rb_day"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="天"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:padding="10dp"
+                android:gravity="center"
+                android:button="@null"
+                android:checked="true"
+                android:background="@drawable/bg_raido_check"/>
+
+        </RadioGroup>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/frg_view"
+        android:layout_below="@+id/head_contro"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/dimen_10dp">
+
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/rcv"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent">-->
+
+<!--        </androidx.recyclerview.widget.RecyclerView>-->
+
+    </RelativeLayout>
+
+</RelativeLayout>

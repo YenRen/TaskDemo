@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen_50dp">
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:00"/>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/dimen_8dp"
+        android:layout_toRightOf="@+id/tv_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"/>
+
+        <TextView
+            android:layout_marginTop="@dimen/dimen_6dp"
+            android:id="@+id/spacer_view"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:background="@color/touming"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/dimen_20dp"
+            android:textSize="@dimen/dimen_15sp"/>
+    </LinearLayout>
+
+
+
+</RelativeLayout>
